@@ -13,15 +13,19 @@ datasource db {
 model Player {
   id          Int @id @default(autoincrement())
   name        String
-  isNational  Boolean @default(true)
+  isNational  Boolean
   joiningDate DateTime
   role        String[]
-  // Team        Team[]   @relation("PlayerToTeam")
+  stats_balling Int[] @default([0, 0, 0, 0])
+  stats_batting Int[] @default([0, 0, 0, 0])
+  team     Team       @relation(fields: [teamId], references: [id])
+  teamId Int
 }
 
 model Team {
   id          Int @id
   name        String
   description String
-  // Player      Player[] @relation("PlayerToTeam")
+  // members     Int[] @default([])
+  players Player[]
 }

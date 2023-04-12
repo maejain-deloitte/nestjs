@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, NotFoundException } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, NotFoundException, Query, Req, Res } from '@nestjs/common';
 import { PlayersService } from './players.service';
 import { CreatePlayerDto } from './dto/create-player.dto';
 import { UpdatePlayerDto } from './dto/update-player.dto';
@@ -21,9 +21,24 @@ export class PlayersController {
   async findOne(@Param('id') id: string) {
     const player = await this.playersService.findOne(+id);
     if (!player) {
-      throw new NotFoundException(`Player with ${id} not found`);
+      throw new NotFoundException(`Player with id ${id} not found`);
     }
     return player;
+  }
+
+  @Get(':id/stats/:discipline')
+  async findOneStats(@Param('id') id: string, @Param('discipline') discipline: string) {
+    const player = await this.playersService.findOne(+id);
+    console.log(player);
+    console.log(discipline);
+    if (!player) {
+      throw new NotFoundException(`Stats for player with id ${id} not found`);
+    }
+    if (discipline == "batting"){
+      return player.stats_batting;
+    } else if (discipline == "balling") {
+      return player.stats_balling;
+    }
   }
 
   @Patch(':id')

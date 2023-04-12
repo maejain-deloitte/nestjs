@@ -48,6 +48,8 @@ DATABASE_URL="postgresql://postgres:postgres@localhost:5432/mydb?schema=public"
 
 ```
 npx prisma migrate dev
+npx prisma migrate reset
+npx prisma db seed
 ```
 
 
@@ -77,3 +79,11 @@ to: service
 add the dto
 
 change the controller and services
+
+## Data models
+https://www.prisma.io/docs/concepts/components/prisma-schema/data-model
+
+
+## Data base migration issues
+npx prisma migrate diff --from-url "postgresql://postgres:postgres@localhost:5432/mydb?schema=public" --to-schema-datamodel prisma/schema.prisma --script > forward.sql
+npx prisma db execute --url "postgresql://postgres:postgres@localhost:5432/mydb?schema=public" --file forward.sql
