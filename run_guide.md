@@ -11,17 +11,10 @@ visit: 0.0.0.0
 
 ## Player json examples
 {
-    "name": "Virat Kohli",
-    "isNational": true,
-    "joiningDate": "2023-03-01",
-    "role": ["captain", "batsman"]
-}
-
-{
-    "name": "Rahul Dravid",
+    "name": "samBender",
     "isNational": false,
     "joiningDate": "2023-03-06",
-    "role": ["batsman", "baller"]
+    "role": ["wicketkeeper", "baller"]
 }
 
 ## Team json examples
@@ -71,3 +64,16 @@ npm install --save @nestjs/swagger swagger-ui-express
 
 go to localhost:3000/api
 
+```
+npx nest generate resource
+```
+
+add: imports: [PrismaModule]
+to: module
+
+add: constructor(private prisma: PrismaService) {}
+to: service
+
+add the dto
+
+change the controller and services
