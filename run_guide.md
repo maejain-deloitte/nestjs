@@ -68,3 +68,6 @@ npx nest generate module prisma
 npx nest generate service prisma
 npm install --save @nestjs/swagger swagger-ui-express
 ```
+
+go to localhost:3000/api
+
